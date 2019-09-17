@@ -3,9 +3,3 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt install openssh-server -y
 sudo apt install samba -y
-sudo mkdir /torrent
-sudo useradd smbadmin
-sudo smbpasswd -a smbadmin
-sudo smbpasswd -e smbadmin
-sudo chown smbadmin /torrent
-sudo chmod 2770 /torrent
