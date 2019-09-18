@@ -1,5 +1,8 @@
 #!/bin/sh
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt install openssh-server -y
+# Script for torrent and samba installation
+
+# apt update commented for testing
+# sudo apt-get update
+# sudo apt-get upgrade
+
 sudo apt install samba -y
