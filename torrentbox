@@ -19,7 +19,7 @@ chown -R tbox /torrent
 
 # enabling smb password
 (echo "password"; sleep 1; echo "password" ) | sudo smbpasswd -s -a tbox
-smbpasswd -e david
+smbpasswd -e tbox
 
 # configure Samba server
 echo "[tbox]" >> /etc/samba/smb.conf
