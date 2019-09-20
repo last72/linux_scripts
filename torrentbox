@@ -18,7 +18,7 @@ adduser --disabled-password --gecos "" tbox
 chown -R tbox /torrent
 
 # enabling smb password
-(echo password; echo password) | smbpasswd -s tbox
+(echo "password"; sleep 1; echo "password" ) | sudo smbpasswd -s -a tbox
 smbpasswd -e david
 
 # configure Samba server
