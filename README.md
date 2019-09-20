@@ -5,6 +5,14 @@
 
     It install and configure samba and qbittorrent.
 
+    Type
+
+    ```
+    curl -s https://raw.githubusercontent.com/last72/linux_scripts/master/torrentbox | sudo bash
+    ```
+    in to the terminal (require superuser account).
+
+
 After install, the torrent needs to be downloaded under /torrent/Downloaded or /torrent
 
 Connect the the server by typing smbclient //<serverIP>/tbox -U tbox
