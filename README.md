@@ -5,6 +5,10 @@
 
     It install and configure samba and qbittorrent.
 
+After install, the torrent needs to be downloaded under /torrent/Downloaded or /torrent
+
+Connect the the server by typing smbclient //<serverIP>/tbox -U tbox
+
 1.1 Sources
 
 - Samba turorial

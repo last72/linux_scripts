@@ -11,14 +11,11 @@ apt-get install samba -y
 mkdir /torrent
 mkdir /torrent/Downloaded
 mkdir /torrent/Downloading
-chown -R tbox /torrent
 chmod 770 /torrent
 
 # add user
 adduser --disabled-password --gecos "" tbox
-
-# add admin to group
-#adduser user tbox
+chown -R tbox /torrent
 
 # enabling smb password
 (echo password; echo password) | smbpasswd -s tbox
