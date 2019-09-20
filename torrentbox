@@ -1,10 +1,65 @@
 #!/bin/sh
 # Script for torrent and samba installation
 
-# // commands that works
-# sudo apt-get update
-# sudo apt-get install samba -y
+# apt update
+apt-get update
 
-sudo mkdir /torrent
-sudo mkdir /torrent/Downloaded
-sudo mkdir /torrent/Downloading
+# samba install
+apt-get install samba -y
+
+# creates Download folder for torrent
+mkdir /torrent
+mkdir /torrent/Downloaded
+mkdir /torrent/Downloading
+chown -R tbox /torrent
+chmod 770 /torrent
+
+# add user
+adduser --disabled-password --gecos "" tbox
+
+# add admin to group
+#adduser user tbox
+
+# enabling smb password
+(echo password; echo password) | smbpasswd -s tbox
+smbpasswd -e david
+
+# configure Samba server
+echo "[tbox]" >> /etc/samba/smb.conf
+echo "    comment = Torrent Box Share" >> /etc/samba/smb.conf
+echo "    path = /torrent" >> /etc/samba/smb.conf
+echo "    browseable = no" >> /etc/samba/smb.conf
+echo "    read only = no" >> /etc/samba/smb.conf
+echo "    force create mode = 600" >> /etc/samba/smb.conf
+echo "    force directory mode = 600" >> /etc/samba/smb.conf
+echo "    valid users = tbox" >> /etc/samba/smb.conf
+
+# researt samba
+systemctl restart smbd
+
+# install qbittorrent
+add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
+apt-get install qbittorrent-nox -y
+
+# edit the config file for torrent
+echo "[Unit]" >> /etc/systemd/system/qbittorrent-nox.service
+echo "Description=qBittorrent tbox Deamon" >> /etc/systemd/system/qbittorrent-nox.service
+echo "After=network.target" >> /etc/systemd/system/qbittorrent-nox.service
+echo "" >> /etc/systemd/system/qbittorrent-nox.service
+echo "[Service]" >> /etc/systemd/system/qbittorrent-nox.service
+echo "User=tbox" >> /etc/systemd/system/qbittorrent-nox.service
+echo "Group=tbox" >> /etc/systemd/system/qbittorrent-nox.service
+echo "ExecStart=/usr/bin/qbittorrent-nox" >> /etc/systemd/system/qbittorrent-nox.service
+echo "ExecStop=/usr/bin/killall -w qbittorrent-nox" >> /etc/systemd/system/qbittorrent-nox.service
+echo "" >> /etc/systemd/system/qbittorrent-nox.service
+echo "[Install]" >> /etc/systemd/system/qbittorrent-nox.service
+echo "WantedBy=multi-user.target" >> /etc/systemd/system/qbittorrent-nox.service
+
+# reload the deamon
+systemctl daemon-reload
+
+# start qbittorrent
+systemctl start qbittorrent-nox
+
+# enable qbittorrent-nox that automatically start on startup
+systemctl enable qbittorrent-nox
