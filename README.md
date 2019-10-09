@@ -45,10 +45,9 @@ https://github.com/qbittorrent/qBittorrent/wiki/Setting-up-qBittorrent-on-Ubuntu
 
 in powerShell
 
-    Set-ExecutionPolicy AllSigned
-
     Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
+    iex ((new-object net.webClient).DownloadString('https://raw.githubusercontent.com/last72/linux_scripts/master/w10initialiser.ps1'))
 
 
 
