@@ -39,3 +39,21 @@ https://www.linuxbabe.com/ubuntu/install-qbittorrent-ubuntu-18-04-desktop-server
 
 - Install qbittorrent
 https://github.com/qbittorrent/qBittorrent/wiki/Setting-up-qBittorrent-on-Ubuntu-server-as-daemon-with-Web-interface-(15.04-and-newer)
+
+
+# w10initialiser
+
+in powerShell
+
+    Set-ExecutionPolicy AllSigned
+
+    Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+
+
+
+
+- Install Chocolatey
+https://chocolatey.org/install
+
+- Someone else's script
+https://gist.github.com/amogram/8217460
